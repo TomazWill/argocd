@@ -5,19 +5,23 @@
 ## Installing ArgoCD
 - ### Option 1 - Installing ArgoCD (by manifests):
     ```sh
+    #### Creating namespace
     kubectl create namespace argocd
-
+    #### Installing ArgoCD on namespace 'argocd'
     kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-    
+    #### Tuning services to LoadBalancer
     kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+    #### Port Forwarding
+    kubectl port-forward svc/argocd-server -n argocd 8181:443
     ```
 - ### Option 2 - Installing ArgoCD (by Helm):
     ```sh
+    #### Add Helm Repository 'ArgoCD'
     helm repo add argo https://argoproj.github.io/argo-helm
-    
+    #### Install ArgoCD and create namespace 
     helm install sre-argocd argo/argo-cd --namespace argocd --create-namespace 
-
-    helm upgrade --install argo argo-helm/charts/argo-cd --values argo-helm/charts/argo-cd/values.yaml --namespace=argo --create-namespace
+    #### Port Forwarding
+    kubectl port-forward svc/sre-argocd-server 8090:80 -n argocd
     ```
 
 --- 
@@ -32,8 +36,6 @@ brew install argocd
 argocd login --core
 #### Login Using The CLI
 argocd admin initial-password
-#### Port Forwarding
-kubectl port-forward svc/argocd-server -n argocd 8181:443
 ```
 
 --- 
