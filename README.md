@@ -42,16 +42,16 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 ## Application
 ```sh
 ### To Apply an Application:
-argocd app create appgame --repo https://github.com/TomazWill/argocd.git --path k8s --dest-server https://kubernetes.default.svc --dest-namespace game
+argocd app create app-game --repo https://github.com/TomazWill/argocd.git --path k8s/game-2048 --dest-server https://kubernetes.default.svc --dest-namespace game
 ### To Delete an Application:
-argocd app delete appgame
+argocd app delete app-game
 
 ### To Enable 'Sync' for an Application:
-argocd app set appgame --sync-policy auto
+argocd app set app-game --sync-policy auto
 ### To Disable 'Sync' for an Application:
-argocd app set appgame --sync-policy none
+argocd app set app-game --sync-policy none
 ### To Force an Application to 'Sync':
-argocd app sync appgame
+argocd app sync app-game
 
 ```
 
@@ -65,7 +65,7 @@ argocd app sync appgame
 argocd proj create proj-game -d https://kubernetes.default.svc,game -s https://github.com/TomazWill/argocd.git
 
 ### Assign Application To A Project
-argocd app set appgame --project proj-game
+argocd app set app-game --project proj-game
 
 ### Managing Projects Add or Remove 
 argocd proj add-source <PROJECT> <REPO>
