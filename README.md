@@ -43,9 +43,9 @@ argocd admin initial-password
 
 ## 🚀 Running my apis (by ArgoCD)
 ```sh
-### Aplicar os Projects
+### Apply the Projects
 kubectl apply -f argocd/argocd-projects.yaml
-### Aplicar os Applications
+### Apply the Applications
 kubectl apply -f k8s/applications/game.yaml
 kubectl apply -f k8s/applications/guestbook.yaml
 ```
