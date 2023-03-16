@@ -11,7 +11,7 @@ spec:
   source:
     path: k8s/overlays/guestbook
     repoURL: https://github.com/TomazWill/argocd
-    targetRevision: main
+    targetRevision: master
   project: proj-dev
   syncPolicy:
       syncOptions:
