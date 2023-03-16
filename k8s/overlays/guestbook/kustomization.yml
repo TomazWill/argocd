@@ -3,6 +3,7 @@ kind: Kustomization
 
 bases: 
 - ../../manifest/development/guestbook
+- ../../manifest/production/guestbook
 
 namespace: guestbook
 commonLabels:
