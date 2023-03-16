@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: proj-dev
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Projects for Development
+  sourceRepos: 
+    - 'https://github.com/TomazWill/argocd'
+  destinations:
+    - namespace: '*'
+      name: 'k3d-dev-cluster-will'
+      server: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'

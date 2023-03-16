@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-guestbook
+  namespace: argocd
+spec:
+  destination:
+    # name: 'k3d-dev-cluster-will'
+    namespace: guestbook
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: k8s/manifest/development/guestbook
+    repoURL: https://github.com/TomazWill/argocd
+    targetRevision: main
+  project: proj-dev
+  syncPolicy:
+      syncOptions:
+        - CreateNamespace=true
+      automated: 
+        prune: true
+        selfHeal: true

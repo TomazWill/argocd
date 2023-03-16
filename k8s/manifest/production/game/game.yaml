@@ -1,0 +1,41 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: game
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: game
+  name: deployment-game-production
+spec:
+  selector:
+    matchLabels:
+      app: app-game-production
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: app-game-production
+    spec:
+      containers:
+      - image: public.ecr.aws/kishorj/docker-2048:latest
+        imagePullPolicy: Always
+        name: app-game-production
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: game
+  name: service-game-production
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: NodePort
+  selector:
+    app: app-game-production
