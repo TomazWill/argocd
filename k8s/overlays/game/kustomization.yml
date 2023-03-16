@@ -3,6 +3,7 @@ kind: Kustomization
 
 bases: 
 - ../../manifest/development/game
+- ../../manifest/production/game
 
 namespace: game
 commonLabels:
