@@ -9,7 +9,7 @@ spec:
     namespace: game
     server: 'https://kubernetes.default.svc'
   source:
-    path: k8s/manifest/development/game
+    path: k8s/overlays/game
     repoURL: https://github.com/TomazWill/argocd
     targetRevision: main
   project: proj-dev

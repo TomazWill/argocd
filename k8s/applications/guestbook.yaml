@@ -9,7 +9,7 @@ spec:
     namespace: guestbook
     server: 'https://kubernetes.default.svc'
   source:
-    path: k8s/manifest/development/guestbook
+    path: k8s/overlays/guestbook
     repoURL: https://github.com/TomazWill/argocd
     targetRevision: main
   project: proj-dev
